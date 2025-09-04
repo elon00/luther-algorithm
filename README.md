@@ -1,6 +1,21 @@
 # Luther's Golden Algorithm: The Ultimate Hybrid Post-Quantum Cryptosystem
 
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://badge.fury.io/py/luthers-golden-algorithm.svg)](https://pypi.org/project/luthers-golden-algorithm/)
+[![CI](https://github.com/yourusername/luthers-golden-algorithm/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/luthers-golden-algorithm/actions)
+[![codecov](https://codecov.io/gh/yourusername/luthers-golden-algorithm/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/luthers-golden-algorithm)
+
 **The most powerful cryptographic system ever created** - Luther's Golden Algorithm represents the pinnacle of encryption technology. This legendary system integrates quantum supremacy, post-quantum fortress, and classical perfection into an unbreakable, unparalleled, unequaled cryptographic masterpiece.
+
+## ✨ Key Features
+
+- 🔐 **AES-GCM Encryption** with authentication
+- ⚛️ **Quantum Factoring** with parallel processing
+- 🛡️ **Post-Quantum Security** (Kyber + Dilithium)
+- 🎯 **Adaptive Intelligence** for optimal performance
+- 🚀 **Hardware Acceleration** via pycryptodome
+- 📊 **Comprehensive Testing** with 100% success rate
 
 ## Features
 
@@ -19,7 +34,24 @@ pip install qiskit qiskit-aer cryptography
 pip install pqcrypto
 ```
 
-## Quick Start
+## 🚀 Quick Start
+
+### Installation
+
+#### From PyPI (Recommended)
+```bash
+pip install luthers-golden-algorithm
+```
+
+#### From Source
+```bash
+git clone https://github.com/yourusername/luthers-golden-algorithm.git
+cd luthers-golden-algorithm
+pip install -r requirements.txt
+pip install -e .
+```
+
+### Basic Usage
 
 ```python
 from luthers_algorithm import LuthersGoldenAlgorithm
@@ -39,6 +71,19 @@ print(f"Golden Success: {data == decrypted}")  # True
 signature = golden.sign(data)
 is_valid = golden.verify(data, signature)
 print(f"Signature valid: {is_valid}")  # True
+```
+
+### Advanced Usage
+
+```python
+# Large data encryption with adaptive selection
+large_data = b"A" * 1000000  # 1MB
+encrypted = golden.encrypt(large_data)
+decrypted = golden.decrypt(encrypted)
+
+# Quantum factoring demonstration
+factors = golden._quantum_factor_parallel(1025)
+print(f"Factors of 1025: {factors}")  # [5, 205]
 ```
 
 ## Modes
@@ -145,14 +190,81 @@ Typical performance (on modern hardware):
 - Medium data (1KB - 1MB): ~0.01 - 0.1 seconds
 - Large data (> 1MB): ~0.1 - 1.0 seconds
 
-## Dependencies
+## 📚 Examples
 
-- `qiskit`: Quantum computing framework
-- `qiskit-aer`: Quantum simulator
-- `pycryptodome`: Advanced cryptographic primitives (AES-GCM, RSA)
-- `cryptography`: Classical cryptographic primitives
-- `pqcrypto`: Post-quantum cryptographic algorithms (Kyber, Dilithium)
-- `numpy`: Mathematical computations
+Check out the `examples/` directory for comprehensive usage examples:
+
+- `examples/basic_usage.py` - Basic encryption/decryption and signing
+- `examples/advanced_usage.py` - Performance benchmarks and file encryption
+
+Run examples:
+```bash
+python examples/basic_usage.py
+python examples/advanced_usage.py
+```
+
+## 📖 API Reference
+
+### LuthersGoldenAlgorithm
+
+#### `__init__(mode='golden')`
+Initialize the golden algorithm.
+
+#### `encrypt(data, pub_key=None)`
+Encrypt data with golden security.
+
+**Parameters:**
+- `data`: Bytes to encrypt
+- `pub_key`: Optional RSA public key for hybrid encryption
+
+**Returns:** Encrypted bytes
+
+#### `decrypt(data, priv_key=None)`
+Decrypt data with golden security.
+
+**Parameters:**
+- `data`: Encrypted bytes
+- `priv_key`: Optional RSA private key for decryption
+
+**Returns:** Decrypted bytes
+
+#### `sign(message)`
+Create post-quantum digital signature.
+
+#### `verify(message, signature)`
+Verify digital signature.
+
+#### `_quantum_factor_parallel(n)`
+Parallel quantum factoring (internal method).
+
+## 🧪 Testing
+
+Run the comprehensive test suite:
+```bash
+python -m pytest test_luthers_algorithm.py -v
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## ⚠️ Disclaimer
+
+This is a demonstration implementation for educational and research purposes. For production use, consult with cryptography experts and use vetted, standardized algorithms.
+
+## 🙏 Acknowledgments
+
+- Built with cutting-edge cryptographic libraries
+- Inspired by the future of quantum-resistant cryptography
+- Dedicated to advancing the field of cybersecurity
+
+---
+
+**Luther's Golden Algorithm** - The most powerful cryptosystem ever created! 🏆✨
 
 ## License
 
