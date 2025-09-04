@@ -7,6 +7,6 @@ __author__ = "Luther's Algorithm Team"
 __email__ = "contact@luthersalgorithm.com"
 __description__ = "The most powerful hybrid post-quantum cryptosystem ever created"
 
-from .luthers_algorithm import LuthersGoldenAlgorithm
+from .luther_algorithm import LuthersGoldenAlgorithm
 
 __all__ = ["LuthersGoldenAlgorithm"]

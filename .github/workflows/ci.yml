@@ -29,7 +29,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python -m pytest test_luthers_algorithm.py -v --cov=luthers_algorithm --cov-report=xml
+        python -m pytest test_luthers_algorithm.py -v --cov=luther_algorithm --cov-report=xml
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
@@ -56,13 +56,13 @@ jobs:
         pip install flake8 black mypy
 
     - name: Run flake8
-      run: flake8 luthers_algorithm.py test_luthers_algorithm.py --count --select=E9,F63,F7,F82 --show-source --statistics
+      run: flake8 luther_algorithm/luther_algorithm.py test_luthers_algorithm.py --count --select=E9,F63,F7,F82 --show-source --statistics
 
     - name: Run black
-      run: black --check luthers_algorithm.py test_luthers_algorithm.py
+      run: black --check luther_algorithm/luther_algorithm.py test_luthers_algorithm.py
 
     - name: Run mypy
-      run: mypy luthers_algorithm.py --ignore-missing-imports
+      run: mypy luther_algorithm/luther_algorithm.py --ignore-missing-imports
 
   build:
     runs-on: ubuntu-latest

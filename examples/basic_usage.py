@@ -3,7 +3,7 @@
 Basic usage example for Luther's Golden Algorithm
 """
 
-from luthers_algorithm import LuthersGoldenAlgorithm
+from luther_algorithm import LuthersGoldenAlgorithm
 
 def main():
     print("Luther's Golden Algorithm - Basic Usage Demo")

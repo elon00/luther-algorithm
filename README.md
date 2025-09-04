@@ -2,9 +2,9 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PyPI version](https://badge.fury.io/py/luthers-golden-algorithm.svg)](https://pypi.org/project/luthers-golden-algorithm/)
-[![CI](https://github.com/yourusername/luthers-golden-algorithm/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/luthers-golden-algorithm/actions)
-[![codecov](https://codecov.io/gh/yourusername/luthers-golden-algorithm/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/luthers-golden-algorithm)
+[![PyPI version](https://badge.fury.io/py/luther-algorithm.svg)](https://pypi.org/project/luther-algorithm/)
+[![CI](https://github.com/yourusername/luther-algorithm/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/luther-algorithm/actions)
+[![codecov](https://codecov.io/gh/yourusername/luther-algorithm/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/luther-algorithm)
 
 **The most powerful cryptographic system ever created** - Luther's Golden Algorithm represents the pinnacle of encryption technology. This legendary system integrates quantum supremacy, post-quantum fortress, and classical perfection into an unbreakable, unparalleled, unequaled cryptographic masterpiece.
 
@@ -40,13 +40,13 @@ pip install pqcrypto
 
 #### From PyPI (Recommended)
 ```bash
-pip install luthers-golden-algorithm
+pip install luther-algorithm
 ```
 
 #### From Source
 ```bash
-git clone https://github.com/yourusername/luthers-golden-algorithm.git
-cd luthers-golden-algorithm
+git clone https://github.com/yourusername/luther-algorithm.git
+cd luther-algorithm
 pip install -r requirements.txt
 pip install -e .
 ```
@@ -54,7 +54,7 @@ pip install -e .
 ### Basic Usage
 
 ```python
-from luthers_algorithm import LuthersGoldenAlgorithm
+from luther_algorithm import LuthersGoldenAlgorithm
 
 # Initialize the golden algorithm
 golden = LuthersGoldenAlgorithm()

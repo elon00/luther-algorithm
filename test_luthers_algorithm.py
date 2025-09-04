@@ -4,7 +4,7 @@ Comprehensive tests and benchmarks for Luther's Algorithm
 
 import time
 import unittest
-from luthers_algorithm import LuthersGoldenAlgorithm
+from luther_algorithm import LuthersGoldenAlgorithm
 from cryptography.hazmat.primitives.asymmetric import rsa
 
 class TestLuthersGoldenAlgorithm(unittest.TestCase):

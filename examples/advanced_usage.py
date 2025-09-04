@@ -6,7 +6,7 @@ Demonstrates performance benchmarking and large-scale operations
 
 import time
 import os
-from luthers_algorithm import LuthersGoldenAlgorithm
+from luther_algorithm import LuthersGoldenAlgorithm
 
 def benchmark_performance():
     """Benchmark encryption/decryption performance"""

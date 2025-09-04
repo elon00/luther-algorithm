@@ -11,7 +11,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name="luthers-golden-algorithm",
+    name="luther-algorithm",
     version="1.0.0",
     author="Luther's Algorithm Team",
     author_email="contact@luthersalgorithm.com",
@@ -54,7 +54,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "luthers-golden=luthers_algorithm:main",
+            "luther-algorithm=luther_algorithm:main",
         ],
     },
     include_package_data=True,
