@@ -39,22 +39,21 @@ class LuthersGoldenAlgorithm:
         self.quantum_boost = True
 
     def _quantum_factor_parallel(self, n):
-        """Ultra-fast parallel quantum factoring"""
+        """Deterministic quantum factoring for consistent key derivation"""
+        if n < 2: return [n]
         if n < 2**10: return [n]
-        factors = []
-        with ThreadPoolExecutor(max_workers=os.cpu_count()) as exe:
-            for i in exe.map(lambda x: [x, n//x] if n%x==0 else None,
-                           range(2, int(np.sqrt(n))+1)):
-                if i:
-                    factors.extend(i)
-                    break
-        if not factors: return [n]
-        # Fully factor
-        result = []
-        for f in factors:
-            if f > 1:
-                result.extend(self._quantum_factor_parallel(f))
-        return sorted(result)
+
+        # Deterministic factoring - find smallest factor first
+        for i in range(2, int(np.sqrt(n)) + 1):
+            if n % i == 0:
+                factor1, factor2 = i, n // i
+                # Recursively factor both parts and combine deterministically
+                factors1 = self._quantum_factor_parallel(factor1)
+                factors2 = self._quantum_factor_parallel(factor2)
+                return sorted(factors1 + factors2)
+
+        # n is prime
+        return [n]
 
     def _aes_gcm(self, data, key, encrypt=True):
         """AES-GCM with authentication"""
@@ -76,8 +75,9 @@ class LuthersGoldenAlgorithm:
 
         # Different encryption for each layer
         if layer == 0:
-            # Layer 1: AES with quantum-derived key
-            key = hashlib.sha256(str(self._quantum_factor_parallel(secrets.randbelow(2**16))).encode()).digest()
+            # Layer 0: AES with deterministic quantum-derived key
+            seed = int.from_bytes(hashlib.sha256(data[:16]).digest(), 'big') % (2**16)
+            key = hashlib.sha256(str(self._quantum_factor_parallel(seed)).encode()).digest()
             return self._aes_gcm(data, key, True)
         elif layer == 1:
             # Layer 2: Post-quantum if available
@@ -165,8 +165,9 @@ class LuthersGoldenAlgorithm:
                 key_data, enc = data[:key_size], data[key_size:]
                 return self._aes_gcm(enc, key_data, False)
         else:
-            # Layer 1: AES with quantum-derived key
-            key = hashlib.sha256(str(self._quantum_factor_parallel(secrets.randbelow(2**16))).encode()).digest()
+            # Layer 0: AES with deterministic quantum-derived key
+            seed = int.from_bytes(hashlib.sha256(data[:16]).digest(), 'big') % (2**16)
+            key = hashlib.sha256(str(self._quantum_factor_parallel(seed)).encode()).digest()
             return self._aes_gcm(data, key, False)
 
     def decrypt(self, data, priv_key=None):
