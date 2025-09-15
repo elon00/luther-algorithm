@@ -76,11 +76,11 @@ class LuthersGoldenAlgorithm:
         # Different encryption for each layer
         if layer == 0:
             # Layer 0: AES with deterministic quantum-derived key
-            seed = int.from_bytes(hashlib.sha256(data[:16]).digest(), 'big') % (2**16)
+            seed = 12345  # fixed seed for consistency
             key = hashlib.sha256(str(self._quantum_factor_parallel(seed)).encode()).digest()
             return self._aes_gcm(data, key, True)
         elif layer == 1:
-            # Layer 2: Post-quantum if available
+            # Layer 1: Post-quantum if available
             if self.pq:
                 ct, ss = encapsulate(self.kem_pk)
                 key = hashlib.sha256(ss).digest()
@@ -89,12 +89,13 @@ class LuthersGoldenAlgorithm:
                 key = get_random_bytes(32)
                 return key + self._aes_gcm(data, key, True)
         else:
-            # Layer 3: Hybrid with quantum boost
+            # Layer 2: Hybrid with quantum boost
             key = get_random_bytes(32)
+            original_key = key
             if self.quantum_boost:
                 factors = self._quantum_factor_parallel(int.from_bytes(key, 'big') % 2**20)
                 key = hashlib.sha256(str(factors).encode()).digest()
-            return self._aes_gcm(data, key, True)
+            return original_key + self._aes_gcm(data, key, True)
 
     def encrypt(self, data, pub_key=None):
         """Super Golden encryption with adaptive intelligence and multiple layers"""
@@ -144,7 +145,7 @@ class LuthersGoldenAlgorithm:
 
         # Reverse the encryption layers
         if layer == 2:
-            # Layer 3: Hybrid with quantum boost
+            # Layer 2: Hybrid with quantum boost
             key_size = 32
             key_data, enc = data[:key_size], data[key_size:]
             key = key_data
@@ -153,7 +154,7 @@ class LuthersGoldenAlgorithm:
                 key = hashlib.sha256(str(factors).encode()).digest()
             return self._aes_gcm(enc, key, False)
         elif layer == 1:
-            # Layer 2: Post-quantum if available
+            # Layer 1: Post-quantum if available
             if self.pq:
                 key_size = 768
                 key_data, enc = data[:key_size], data[key_size:]
@@ -166,7 +167,7 @@ class LuthersGoldenAlgorithm:
                 return self._aes_gcm(enc, key_data, False)
         else:
             # Layer 0: AES with deterministic quantum-derived key
-            seed = int.from_bytes(hashlib.sha256(data[:16]).digest(), 'big') % (2**16)
+            seed = 12345  # fixed seed for consistency
             key = hashlib.sha256(str(self._quantum_factor_parallel(seed)).encode()).digest()
             return self._aes_gcm(data, key, False)
 
